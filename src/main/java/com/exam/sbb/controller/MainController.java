@@ -73,6 +73,20 @@ public class MainController {
     return increaseNo;
 
   }
+  @GetMapping ("/gugudan")
+  @ResponseBody
+  public String gugudan(int dan ,int limit){
+    String rs ="";
+    for(int i = 1; i<=limit; i++){
+
+      rs += "%d * %d =%d<br>\n".formatted(dan,i,dan*i);
+
+    }
+
+    return rs;
+
+  }
+
 
 
 
