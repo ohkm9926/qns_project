@@ -24,6 +24,14 @@ class SbbApplicationTests {
 		q1.setCreateDate(LocalDateTime.now());
 		this.questionRepository.save(q1);
 	}
+	@Test
+	void testJpa12(){
+		Question q1 = new Question();
+		q1.setSubject("kyumin123이 무엇인가요");
+		q1.setContent("kyumin123에 대해 알고싶어요");
+		q1.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q1);
+	}
 
     @Test
 	void testJpa2(){
@@ -33,5 +41,10 @@ class SbbApplicationTests {
 		Question q = all.get(0);
 		//실행한 결과가 같은지 알려주는 assertEquals
 		assertEquals("kyumin이 무엇인가요",q.getSubject());
+	}
+
+	@Test
+	void testJpa3(){
+		Question q = questionRepository.findBySubject("kyumin123이 무엇인가요");
 	}
 }
