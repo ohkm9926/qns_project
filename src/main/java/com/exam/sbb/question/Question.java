@@ -1,10 +1,13 @@
 package com.exam.sbb.question;
 
+import com.exam.sbb.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity // 아래 Question클래스는 엔티티 클래스이다.
 @Getter
 @Setter
@@ -21,4 +24,7 @@ public class Question {
     private String content;
 
     private LocalDateTime createDate;
+
+    @OneToMany(mappedBy = "question" , cascade = CascadeType.REMOVE)
+    private List<Answer> answerList;
 }
