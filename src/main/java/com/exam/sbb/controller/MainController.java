@@ -5,11 +5,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -128,7 +130,11 @@ public class MainController {
     return "세션변수 %s의 값이 %s 입니다".formatted(name,value);
   }
 
- private List<Aticle> aticles = new ArrayList<>();
+ private List<Aticle> aticles = new ArrayList<>(
+         Arrays.asList(
+                 new Aticle("제목","내용"),
+                 new Aticle("제목","내용"),
+                 new Aticle("제목","내용")));
 
 
   @GetMapping("/addAticle")
@@ -155,7 +161,28 @@ public class MainController {
 
       return aticle;
   }
+
+  @GetMapping("/modifyAticle/{id}")
+  @ResponseBody
+  public String modifyAticle(@PathVariable int id, String title  ,String body) {
+
+    Aticle aticle = aticles
+            .stream()
+            .filter(a -> a.getId() == id)
+            .findFirst().get();
+
+    if (aticle == null) {
+      return "%d번 게시물은 존재하진 않습니다".formatted(id);
+    }
+    aticle.setTitle(title);
+    aticle.setBody(body);
+    return "%d번게시물이 수정되었습니다".formatted(aticle.getId());
+
+  }
+
+
   @Getter
+  @Setter
   @AllArgsConstructor
   class Aticle{
     private static int lastId= 0;
