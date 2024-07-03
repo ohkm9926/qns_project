@@ -157,7 +157,7 @@ public class MainController {
      Aticle aticle = aticles
                .stream()
              .filter(a->a.getId() == id)
-               .findFirst().get();
+               .findFirst().orElse(null);
 
       return aticle;
   }
@@ -169,7 +169,7 @@ public class MainController {
     Aticle aticle = aticles
             .stream()
             .filter(a -> a.getId() == id)
-            .findFirst().get();
+            .findFirst().orElse(null);
 
     if (aticle == null) {
       return "%d번 게시물은 존재하진 않습니다".formatted(id);
