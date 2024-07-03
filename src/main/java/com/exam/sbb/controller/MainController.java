@@ -3,6 +3,7 @@ package com.exam.sbb.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -123,6 +124,26 @@ public class MainController {
 
     return "세션변수 %s의 값이 %s 입니다".formatted(name,value);
   }
+
+  @GetMapping("/addAticle")
+  @ResponseBody
+  public String addAticle(String title,String body){
+    int id = 1;
+
+    Aticle aticle = new Aticle(id,title,body);
+
+    return "%d번 게시물이 생성되었습니다".formatted(id);
+
+
+  }
+  @AllArgsConstructor
+  class Aticle{
+    private int id;
+    private String title;
+    private String body;
+
+  }
+
 
 
 
