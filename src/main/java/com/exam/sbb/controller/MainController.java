@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -128,21 +129,28 @@ public class MainController {
   @GetMapping("/addAticle")
   @ResponseBody
   public String addAticle(String title,String body){
-    int id = 1;
 
-    Aticle aticle = new Aticle(id,title,body);
 
-    return "%d번 게시물이 생성되었습니다".formatted(id);
+    Aticle aticle = new Aticle(title,body);
+
+    return "%d번 게시물이 생성되었습니다".formatted(aticle.getId());
 
 
   }
   @AllArgsConstructor
   class Aticle{
+    private static int lastId= 0;
+    @Getter
     private int id;
     private String title;
     private String body;
 
+    public Aticle(String title, String body){
+      this(++lastId, title, body);
+    }
+
   }
+
 
 
 
