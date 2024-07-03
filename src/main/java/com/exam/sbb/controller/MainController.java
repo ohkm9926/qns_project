@@ -180,6 +180,23 @@ public class MainController {
 
   }
 
+  @GetMapping("/deleteAticle/{id}")
+  @ResponseBody
+  public String deleteAticle(@PathVariable int id) {
+
+    Aticle aticle = aticles
+            .stream()
+            .filter(a -> a.getId() == id)
+            .findFirst().orElse(null);
+
+    if (aticle == null) {
+      return "%d번 게시물은 존재하진 않습니다".formatted(id);
+    }
+    aticles.remove(aticle);
+    return "%d번 게시물이 삭제되었습니다".formatted(aticle.getId());
+
+  }
+
 
   @Getter
   @Setter
