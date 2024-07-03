@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -126,21 +128,38 @@ public class MainController {
     return "세션변수 %s의 값이 %s 입니다".formatted(name,value);
   }
 
+ private List<Aticle> aticles = new ArrayList<>();
+
+
   @GetMapping("/addAticle")
   @ResponseBody
   public String addAticle(String title,String body){
 
 
     Aticle aticle = new Aticle(title,body);
+    aticles.add(aticle);
 
     return "%d번 게시물이 생성되었습니다".formatted(aticle.getId());
 
 
   }
+
+  @GetMapping("/aticle/{id}")
+  @ResponseBody
+  public Aticle getArticle(@PathVariable int id){
+
+     Aticle aticle = aticles
+               .stream()
+             .filter(a->a.getId() == id)
+               .findFirst().get();
+
+      return aticle;
+  }
+  @Getter
   @AllArgsConstructor
   class Aticle{
     private static int lastId= 0;
-    @Getter
+
     private int id;
     private String title;
     private String body;
