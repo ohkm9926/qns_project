@@ -196,8 +196,25 @@ public class MainController {
     return "%d번 게시물이 삭제되었습니다".formatted(aticle.getId());
 
   }
+  @GetMapping("/addPersonOnlyWay")
+  @ResponseBody
+  public Aticle.Person addPersonOnlyWay(int id, int age, String name){
+    Aticle.Person p =new Aticle.Person(id,age,name);
+    return p;
+
+  }
+
+  @GetMapping("/addPerson")
+  @ResponseBody
+  public Aticle.Person addPerson(Aticle.Person p){
+
+    return p;
+
+  }
 
 
+
+ //class 추가
   @Getter
   @Setter
   @AllArgsConstructor
@@ -212,7 +229,18 @@ public class MainController {
       this(++lastId, title, body);
     }
 
-  }
+   @AllArgsConstructor
+   @Setter
+   @Getter
+   static class Person{
+      private int id;
+      private int age;
+      private String name;
+    }
+
+ }
+
+
 
 
 
