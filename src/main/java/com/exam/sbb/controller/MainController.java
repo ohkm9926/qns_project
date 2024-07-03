@@ -3,9 +3,7 @@ package com.exam.sbb.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -230,13 +228,20 @@ public class MainController {
     }
 
    @AllArgsConstructor
+   @NoArgsConstructor
    @Setter
    @Getter
    static class Person{
-      private int id;
+     public Person(int age, String name) {
+       this.age = age;
+       this.name = name;
+     }
+
+     private int id;
       private int age;
       private String name;
     }
+
 
  }
 
