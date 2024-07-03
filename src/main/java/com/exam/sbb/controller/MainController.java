@@ -204,7 +204,7 @@ public class MainController {
 
   }
 
-  @GetMapping("/addPerson")
+  @GetMapping("/addPerson/{id}")
   @ResponseBody
   public Aticle.Person addPerson(Aticle.Person p){
 
