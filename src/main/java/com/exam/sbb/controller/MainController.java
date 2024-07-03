@@ -196,27 +196,27 @@ public class MainController {
   }
   @GetMapping("/addPersonOnlyWay")
   @ResponseBody
-  public Aticle.Person addPersonOnlyWay(int id, int age, String name){
-    Aticle.Person p =new Aticle.Person(id,age,name);
+  public Person addPersonOnlyWay(int id, int age, String name){
+    Person p =new Person(id,age,name);
     return p;
 
   }
 
   @GetMapping("/addPerson/{id}")
   @ResponseBody
-  public Aticle.Person addPerson(Aticle.Person p){
+  public Person addPerson(Person p){
 
     return p;
 
   }
 
+}
 
-
- //class 추가
-  @Getter
-  @Setter
-  @AllArgsConstructor
-  class Aticle{
+//class 추가
+@Getter
+@Setter
+@AllArgsConstructor
+class Aticle{
     private static int lastId= 0;
 
     private int id;
@@ -224,33 +224,20 @@ public class MainController {
     private String body;
 
     public Aticle(String title, String body){
-      this(++lastId, title, body);
+        this(++lastId, title, body);
+    }
+    }
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+ class Person{
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
     }
 
-   @AllArgsConstructor
-   @NoArgsConstructor
-   @Setter
-   @Getter
-   static class Person{
-     public Person(int age, String name) {
-       this.age = age;
-       this.name = name;
-     }
-
-     private int id;
-      private int age;
-      private String name;
-    }
-
-
- }
-
-
-
-
-
-
-
-
-
+    private int id;
+    private int age;
+    private String name;
 }
