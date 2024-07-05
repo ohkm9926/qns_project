@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class SbbApplicationTests {
@@ -69,5 +70,14 @@ class SbbApplicationTests {
 		Question q = oq.get();
 		q.setSubject("수정된 제목");
 		questionRepository.save(q);
+	}
+	@Test
+	void testJpa7(){
+	   assertEquals(3 , questionRepository.count());
+	   Optional<Question> oq  = questionRepository.findById(1);
+	   assertTrue(oq.isPresent());
+	   Question q = oq.get();
+	   questionRepository.delete(q);
+	   assertEquals(2,questionRepository.count());
 	}
 }
