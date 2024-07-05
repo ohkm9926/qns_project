@@ -79,52 +79,5 @@ class QuestionApplicationTests {
 
 
 	}
-	/*
 
-    @Test
-	void testJpa2(){
-		List<Question> all = questionRepository.findAll();
-		assertEquals(2,all.size());
-
-		Question q = all.get(0);
-		//실행한 결과가 같은지 알려주는 assertEquals
-		assertEquals("kyumin이 무엇인가요",q.getSubject());
-	}
-
-	@Test
-	void testJpa3(){
-		Question q = questionRepository.findBySubject("kyumin123이 무엇인가요");
-	}
-
-	@Test
-	void testJpa4(){
-		Question q = questionRepository.findBySubjectAndContent("kyumin123이 무엇인가요","kyumin123에 대해 알고싶어요");
-		assertEquals(3,q.getId());
-	}
-
-	@Test
-	void testJpa5(){
-		List<Question> qList = questionRepository.findBySubjectLike("kyumin123%");
-		Question q = qList.get(0);
-		assertEquals("kyumin123이 무엇인가요" , q.getSubject());
-	}
-	@Test
-	void testJpa6(){
-		Optional<Question> oq = questionRepository.findById(1);
-		assertThat(oq.isPresent());
-		Question q = oq.get();
-		q.setSubject("수정된 제목");
-		questionRepository.save(q);
-	}
-	@Test
-	void testJpa7(){
-	   assertEquals(3 , questionRepository.count());
-	   Optional<Question> oq  = questionRepository.findById(1);
-	   assertTrue(oq.isPresent());
-	   Question q = oq.get();
-	   questionRepository.delete(q);
-	   assertEquals(2,questionRepository.count());
-	}
-
- */
 }
