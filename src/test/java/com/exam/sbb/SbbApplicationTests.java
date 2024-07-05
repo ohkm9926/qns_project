@@ -20,7 +20,7 @@ class SbbApplicationTests {
 	private QuestionRepository questionRepository;
 	@Test
 	void testJpa0() {
-		questionRepository.truncate();
+
 
 	}
 
@@ -32,14 +32,19 @@ class SbbApplicationTests {
 		q1.setContent("kyumin에 대해 알고싶어요");
 		q1.setCreateDate(LocalDateTime.now());
 		this.questionRepository.save(q1);
-	}
-	@Test
-	void testJpa12(){
-		Question q1 = new Question();
+
+
+
+		Question q2 = new Question();
 		q1.setSubject("kyumin123이 무엇인가요");
 		q1.setContent("kyumin123에 대해 알고싶어요");
 		q1.setCreateDate(LocalDateTime.now());
-		this.questionRepository.save(q1);
+		this.questionRepository.save(q2);
+
+
+		questionRepository.disableForeignKeyChecks();
+		questionRepository.truncate();
+		questionRepository.enableForeignKeyChecks();
 	}
 
     @Test
