@@ -19,6 +19,21 @@ class AnswerApplicationTests {
 	@Autowired
 	private AnswerRepository answerRepository;
 
+	private int LastSampleDataId;
+
+	@BeforeEach
+	void beforeEach() {
+		clearData();
+		clearSampleData();
+	}
+	private void clearData() {
+		questionRepository.disableForeignKeyChecks();
+		answerRepository.truncate();
+		questionRepository.enableForeignKeyChecks();
+	}
+	private void clearSampleData() {
+	
+	}
 	@Test
 	void testJPA(){
 		Question q = questionRepository.findById(2).get();
