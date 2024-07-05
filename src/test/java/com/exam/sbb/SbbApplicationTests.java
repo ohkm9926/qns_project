@@ -18,6 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class SbbApplicationTests {
 	@Autowired
 	private QuestionRepository questionRepository;
+	@Test
+	void testJpa0() {
+		questionRepository.truncate();
+
+	}
+
 
 	@Test
 	void testJpa(){
