@@ -47,4 +47,10 @@ class SbbApplicationTests {
 	void testJpa3(){
 		Question q = questionRepository.findBySubject("kyumin123이 무엇인가요");
 	}
+
+	@Test
+	void testJpa4(){
+		Question q = questionRepository.findBySubjectAndContent("kyumin123이 무엇인가요","kyumin123에 대해 알고싶어요");
+		assertEquals(3,q.getId());
+	}
 }
