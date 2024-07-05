@@ -32,7 +32,19 @@ class AnswerApplicationTests {
 		questionRepository.enableForeignKeyChecks();
 	}
 	private void clearSampleData() {
-	
+		Question q1 = new Question();
+		q1.setSubject("kyumin이 무엇인가요");
+		q1.setContent("kyumin에 대해 알고싶어요");
+		q1.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q1);
+
+		Question q2 = new Question();
+		q2.setSubject("kyumin123이 무엇인가요");
+		q2.setContent("kyumin123에 대해 알고싶어요");
+		q2.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q2);
+
+		LastSampleDataId =q2.getId();
 	}
 	@Test
 	void testJPA(){
